@@ -1,7 +1,4 @@
-<?php
-include("Database/DB_connet.php");
-include('counter.php');
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -325,59 +322,7 @@ Utopia Technologies is a web design, web development and digital marketing agenc
  <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
   <h2 class="text-center">Order us by registering here.</h2>
   
-	    <?php
-// define variables and set to empty values
-$nameErr = $emailErr= $websiteErr = "";
-$gname =$orgname=$address=$phone=$subject=$service_type= $email= $message= "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   $orgname = test_input($_POST["orgname"]);
-    $phone = test_input($_POST["phone"]);
-	$address = test_input($_POST["address"]);
-	$email = test_input($_POST["email"]);
-	
-	$service_type = test_input($_POST["service_type"]);
-    // check if name only contains letters and whitespace
-    if (!preg_match("/^[a-zA-Z ]*$/",$gname)) {
-      $gnameErr = "Only letters and white space allowed"; 
-    }else {
-		 $gname = test_input($_POST["gname"]);
-	}
-     
-    // check if name only contains letters and whitespace
-  
-    // check if e-mail address is well-formed
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      $emailErr = "Invalid email format"; 
-    }else {
-		  $email = test_input($_POST["email"]);
-    } 
-    $message = test_input($_POST["message"]);
-   
-       //register here 
-	            
-				 $sql_query2 = "INSERT INTO contact_us (id,reg_date,given_name,orga_name,service_type,address,Phone_no,Email,mesage_body,status) VALUES('',CURDATE(),'$gname','$orgname','$service_type','$address','$phone','$email','$message','active')";
-				   if($q_result2 = $conn->query($sql_query2)){
-					echo "<h4 style='color:green'>Your order has been sent successfully. Thank You for contacting us!.</h4>";
-					 
-					 
-				
-				 }else{
-					 echo "<h4 style='color:red'>Your information has not sent .Please try again!</h4>";
-					 
-				 }
-}
-
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-  
-  
-    
-}
-?>
   <div class="row">
     <div class="col-sm-5">
       <p>Contact us and we'll get back to you as soon as possible.</p>
